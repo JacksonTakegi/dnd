@@ -34,8 +34,8 @@
                     </form>
                 </td>
                 <td> <a href='combat/delete/<?=$user->id?>'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span></a>
-                    <a href="combat/maketurn/<?=$user->id?>">test</a>
-                    <a href="#" class="editroll">Edit Roll</a>
+                    <a href="combat/maketurn/<?=$user->id?>"><span class='glyphicon glyphicon-triangle-left' aria-hidden='true'></span></a>
+                    <a href="#" class="editroll"><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span></a>
                 </td>
                 <td> <?php if ($user->turn) {
                     echo "<span class= 'glyphicon glyphicon-flash'></span> ";
