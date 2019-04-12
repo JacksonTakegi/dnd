@@ -8,9 +8,12 @@
     input#roll {
     width: 25px;
     }
+    .main-table{
+    	margin-top:50px;
+    }
 </style>
-<div class="row">
-    <div class="col-md-4">
+<div class="row main-table">
+    <div class="col-md-4 col-md-offset-4">
         <table class="table table-bordered">
             <tr>
                 <th>Name</th>
@@ -48,7 +51,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-6 col-md-offset-4">
         <form class="form-inline" action='combat/add' method="post">
             {{ csrf_field() }}
             <div class="form-group">
