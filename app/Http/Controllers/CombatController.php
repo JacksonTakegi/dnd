@@ -9,7 +9,7 @@ class CombatController extends Controller
    public function index(){
     $users = \App\User::all()->sortByDesc("roll");
     return \View::make('combat', array('users' => $users));
-
+    
    }
 
    public function getName($name){
@@ -45,6 +45,7 @@ class CombatController extends Controller
    }
 
    public function nextTurn(){
+    $turns=0;
     $users = \App\User::orderBy('roll', 'desc')->get();
     $nextUsersTurn = false;
     foreach ($users as $user) {
@@ -66,6 +67,7 @@ class CombatController extends Controller
     }
    $users[0]->turn = true;
    $users[0]->save();
+   $turns++;
    // add one to the total turns
    return \Redirect::to('combat');
    }
@@ -78,3 +80,27 @@ class CombatController extends Controller
    }
 
 }
+
+
+/* 
+DB TABLES
+
+combat_stats
+    name = turn_count
+    value = 1
+
+characters
+    character_type = pc, npc, important npc
+    name
+    health
+    other character sheet stuff
+    status = alive, dead, anything else
+
+combat
+
+    user_id
+    roll
+    current turn
+    etc
+
+*/
