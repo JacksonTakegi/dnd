@@ -31,5 +31,3 @@ Route::post('combat/add', 'CombatController@addName');
 Route::get('combat/maketurn/{id}', 'CombatController@makeTurn');
 
 Route::post('combat/editroll/{id}', 'CombatController@editRoll');
-
-

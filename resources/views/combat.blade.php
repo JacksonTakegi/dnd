@@ -23,7 +23,7 @@
             </tr>
             <?php
                 foreach ($users as $user) {
-                	?> 
+                    ?> 
             <tr>
                 <td> <?=$user->name?> </td>
                 <td>
@@ -38,8 +38,8 @@
                     <a href="#" class="editroll"><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span></a>
                 </td>
                 <td> <?php if ($user->turn) {
-                    echo "<span class= 'glyphicon glyphicon-flash'></span> ";
-                    }?> </td>
+                        echo "<span class= 'glyphicon glyphicon-flash'></span> ";
+                    } ?> </td>
             </tr>
             <?php
                 }
