@@ -1,5 +1,11 @@
 image: registry.gitlab.com/hollings/dnd
 
+before_script:
+  # Install Xdebug
+  - pecl install xdebug
+  # Enable Xdebug
+  - docker-php-ext-enable xdebug
+
 services:
   - mysql:5.7
 
@@ -20,7 +26,7 @@ unit_test:
     - composer install
     - php artisan key:generate
     - php artisan migrate
-    - vendor/bin/phpunit
+    - vendor/bin/phpunit --coverage-text --colors=never
 
 code_quality:
   stage: test
@@ -29,9 +35,6 @@ code_quality:
     - composer install
     - php artisan key:generate
     - vendor/bin/phpcs
-  artifacts:
-    paths:
-      - coverage/
 
 deploy_production:
   stage: deploy
