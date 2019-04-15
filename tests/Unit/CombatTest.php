@@ -1,0 +1,21 @@
+<?php
+
+namespace Tests\Unit;
+
+use Tests\TestCase;
+use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+
+class CombatTest extends TestCase
+{
+    /**
+     * A basic unit test example.
+     *
+     * @return void
+     */
+    public function testExample()
+    {
+    	$this->post('/combat/add', ['name' => 'test name', 'roll' => 10]);
+    	$this->seeInDatabase('users', ['name' => 'test name', 'roll' => 10]);
+    }
+}
