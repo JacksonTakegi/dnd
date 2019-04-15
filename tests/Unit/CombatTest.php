@@ -15,7 +15,7 @@ class CombatTest extends TestCase
      */
     public function testExample()
     {
-    	$this->post('/combat/add', ['name' => 'test name', 'roll' => 10]);
+    	$this->post('/combat/add', ['character' => 'test name', 'roll' => 10]);
     	$this->assertDatabaseHas('users', ['name' => 'test name', 'roll' => 10]);
     }
 }
