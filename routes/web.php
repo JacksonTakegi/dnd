@@ -18,11 +18,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('characters', 'CharacterController@index');
+
 Route::get('combat', 'CombatController@index');
 
 Route::get('combat/nexturn', 'CombatController@nextTurn');
 
-Route::get('combat/{name}', 'CombatController@getName');
+Route::get('combat/{id}', 'CombatController@getName');
 
 Route::get('combat/delete/{id}', 'CombatController@delete');
 

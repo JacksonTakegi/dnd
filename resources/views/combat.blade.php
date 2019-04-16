@@ -18,26 +18,28 @@
             <tr>
                 <th>Name</th>
                 <th>Roll</th>
+                <th>Health</th>
                 <th>Actions</th>
                 <th>Current Turn</th>
             </tr>
             <?php
-                foreach ($users as $user) {
+                foreach ($combats as $combat) {
                     ?> 
             <tr>
-                <td> <?=$user->name?> </td>
+                <td> <?=$combat->character->name?> </td>
                 <td>
-                    <span class='currentroll'><?=$user->roll?>  </span> 
-                    <form class="rollform" action='combat/editroll/<?=$user->id?>' method="post" id='newroll'>
+                    <span class='currentroll'><?=$combat->roll?>  </span> 
+                    <form class="rollform" action='combat/editroll/<?=$combat->id?>' method="post" id='newroll'>
                         {{ csrf_field() }}
-                        <input type="text" name="roll" id='roll' value='<?=$user->roll?>'>   
+                        <input type="text" name="roll" id='roll' value='<?=$combat->roll?>'>   
                     </form>
                 </td>
-                <td> <a href='combat/delete/<?=$user->id?>'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span></a>
-                    <a href="combat/maketurn/<?=$user->id?>"><span class='glyphicon glyphicon-triangle-left' aria-hidden='true'></span></a>
+                <td> <?=$combat->character->current_health."/".$combat->character->max_health?>   </td>
+                <td> <a href='combat/delete/<?=$combat->id?>'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span></a>
+                    <a href="combat/maketurn/<?=$combat->id?>"><span class='glyphicon glyphicon-triangle-left' aria-hidden='true'></span></a>
                     <a href="#" class="editroll"><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span></a>
                 </td>
-                <td> <?php if ($user->turn) {
+                <td> <?php if ($combat->current_turn) {
                         echo "<span class= 'glyphicon glyphicon-flash'></span> ";
                     } ?> </td>
             </tr>
@@ -55,8 +57,8 @@
         <form class="form-inline" action='combat/add' method="post">
             {{ csrf_field() }}
             <div class="form-group">
-                <label for="character">Character</label>
-                <input type="text" class="form-control" id="character" name="character" placeholder="Butts">
+                <label for="name">Character</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Butts">
             </div>
             <div class="form-group">
                 <label for="roll">Roll</label>

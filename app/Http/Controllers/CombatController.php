@@ -8,75 +8,86 @@ class CombatController extends Controller
 {
     public function index()
     {
-        $users = \App\User::all()->sortByDesc("roll");
-        return \View::make('combat', array('users' => $users));
+        $combats = \App\Combat::all()->sortByDesc("roll");
+        return \View::make('combat', array('combats' => $combats));
     }
 
-    public function getName($name)
+    public function getName($id)
     {
-        $user = \App\User::where("name", $name)->get();
-        return $user;
+        $combat = \App\Combat::where("id", $id)->first();
+        return $combat->character->name;
     }
 
     public function addName(Request $request)
     {
-        $user = new \App\User();
-        $user->name = $request->character;
-        $user->roll = $request->roll;
-        $user->turn = false;
-        $user->save();
+        $character = \App\Character::where("name", $request->name)->first();
+        if (count($character)) {
+        } else {
+            $character = new \App\Character();
+            $character->name = $request->name;
+            $character->character_type = "npc";
+            $character->max_health = 0;
+            $character->current_health = 0;
+            $character->status = "alive";
+            $character->save();
+        }
+        $combat = new \App\Combat();
+        $combat->character_id = $character->id;
+        $combat->roll = $request->roll;
+        $combat->current_turn = false;
+        $combat->save();
         return \Redirect::to('combat');
     }
 
     public function delete($id)
     {
-        $user = \App\User::where("id", $id)->first();
-        $user->delete();
+        $combat = \App\Combat::where("id", $id)->first();
+        $combat->delete();
         return \Redirect::to('combat');
     }
 
     public function makeTurn($id)
     {
-        $user = \App\User::where("id", $id)->first();
-        $user->turn = true;
-        $user->save();
-        $users = \App\User::where('id', "!=", $id)->get();
-        foreach ($users as $user) {
-            $user->turn = false;
-            $user->save();
+        $combat = \App\Combat::where("id", $id)->first();
+        $combat->current_turn = true;
+        $combat->save();
+        $combats = \App\Combat::where('id', "!=", $id)->get();
+        foreach ($combats as $combat) {
+            $combat->current_turn = false;
+            $combat->save();
         }
         return \Redirect::to('combat');
     }
 
     public function nextTurn()
     {
-        $users = \App\User::orderBy('roll', 'desc')->get();
-        $nextUsersTurn = false;
-        foreach ($users as $user) {
-            if ($nextUsersTurn) {
-                $user->turn = true;
-                $nextUsersTurn = false;
-                $user->save();
+        $combats = \App\Combat::orderBy('roll', 'desc')->get();
+        $nextCombatsTurn = false;
+        foreach ($combats as $combat) {
+            if ($nextCombatsTurn) {
+                $combat->current_turn = true;
+                $nextCombatsTurn = false;
+                $combat->save();
                 return \Redirect::to('combat');
             }
 
-            if ($user->turn) {
-                $user->turn = false;
-                $user->save();
-                $nextUsersTurn = true;
+            if ($combat->current_turn) {
+                $combat->current_turn = false;
+                $combat->save();
+                $nextCombatsTurn = true;
             }
         }
-        $users[0]->turn = true;
-        $users[0]->save();
+        $combats[0]->current_turn = true;
+        $combats[0]->save();
         // add one to the total turns
         return \Redirect::to('combat');
     }
 
     public function editRoll($id, Request $request)
     {
-        $user= \App\User::where("id", $id)->first();
-        $user->roll=$request->roll;
-        $user->save();
+        $combat= \App\Combat::where("id", $id)->first();
+        $combat->roll=$request->roll;
+        $combat->save();
         return \Redirect::to('combat');
     }
 }
@@ -97,7 +108,7 @@ characters
 
 combat
 
-    user_id
+    combat_id
     roll
     current turn
     etc
