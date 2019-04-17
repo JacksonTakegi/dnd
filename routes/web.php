@@ -11,7 +11,7 @@
 |
 */
 // Route::get('/combat', function () {
-// 	return view('combat');
+//  return view('combat');
 // });
 
 Route::get('/', function () {
@@ -33,3 +33,5 @@ Route::post('combat/add', 'CombatController@addName');
 Route::get('combat/maketurn/{id}', 'CombatController@makeTurn');
 
 Route::post('combat/editroll/{id}', 'CombatController@editRoll');
+
+Route::get('characters/monster/{monsterName}', 'CharacterController@getMonsterData');

@@ -21,7 +21,7 @@ class CombatController extends Controller
     public function addName(Request $request)
     {
         $character = \App\Character::where("name", $request->name)->first();
-        if (count($character)) {
+        if ($character) {
         } else {
             $character = new \App\Character();
             $character->name = $request->name;
