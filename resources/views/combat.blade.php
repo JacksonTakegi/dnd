@@ -1,23 +1,27 @@
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
-      integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
-<style type="text/css">
-    .glyphicon-trash {
-        color: #c70404;
-        font-size: large;
-    }
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+          integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <style type="text/css">
+        .glyphicon-trash {
+            color: #c70404;
+            font-size: large;
+        }
 
-    .roll-input {
-        width: 100px !important;
-    }
+        .roll-input {
+            width: 100px !important;
+        }
 
-    input#roll {
-        width: 25px;
-    }
+        input#roll {
+            width: 25px;
+        }
 
-    .main-table {
-        margin-top: 50px;
-    }
-</style>
+        .main-table {
+            margin-top: 50px;
+        }
+    </style>
+</head>
+
 <div class="row main-table">
     <div class="col-md-4 col-md-offset-4">
         <table class="table table-bordered">
