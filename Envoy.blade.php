@@ -60,7 +60,7 @@
     php artisan config:cache
     php artisan cache:clear
     php artisan view:cache
-    php artisan migrate
+    php artisan migrate:fresh
     service nginx restart
 @endtask
 

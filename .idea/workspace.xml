@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="85e377b3-3e94-416c-8cea-616f9ae06dc7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/resources/views/characters.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/characters.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/combat.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/combat.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Envoy.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/Envoy.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -61,11 +60,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/characters.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="25">
-              <caret line="1" column="72" selection-start-line="1" selection-start-column="72" selection-end-line="1" selection-end-column="72" />
+            <state relative-caret-position="450">
+              <caret line="18" column="47" lean-forward="true" selection-start-line="18" selection-start-column="47" selection-end-line="18" selection-end-column="47" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Envoy.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1202">
+              <caret line="62" column="29" selection-start-line="62" selection-start-column="29" selection-end-line="62" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -75,15 +83,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="675">
               <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/migrations/2019_04_15_233904_create_characters.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="600">
-              <caret line="26" selection-start-line="26" selection-end-line="26" />
             </state>
           </provider>
         </entry>
@@ -151,6 +150,7 @@
         <option value="$PROJECT_DIR$/tests/Feature/pagesTest.php" />
         <option value="$PROJECT_DIR$/resources/views/combat.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/characters.blade.php" />
+        <option value="$PROJECT_DIR$/Envoy.blade.php" />
       </list>
     </option>
   </component>
@@ -377,7 +377,7 @@
       <workItem from="1555468073661" duration="3479000" />
       <workItem from="1555548622152" duration="3944000" />
       <workItem from="1555561075489" duration="159000" />
-      <workItem from="1555561247773" duration="2110000" />
+      <workItem from="1555561247773" duration="2343000" />
     </task>
     <servers />
   </component>
@@ -399,7 +399,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9692000" />
+    <option name="totallyTimeSpent" value="9925000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="2736" height="1786" extended-state="6" />
@@ -522,8 +522,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/characters.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
-          <caret line="1" column="72" selection-start-line="1" selection-start-column="72" selection-end-line="1" selection-end-column="72" />
+        <state relative-caret-position="450">
+          <caret line="18" column="47" lean-forward="true" selection-start-line="18" selection-start-column="47" selection-end-line="18" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Envoy.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1202">
+          <caret line="62" column="29" selection-start-line="62" selection-start-column="29" selection-end-line="62" selection-end-column="29" />
         </state>
       </provider>
     </entry>
