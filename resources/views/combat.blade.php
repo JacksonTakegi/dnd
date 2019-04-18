@@ -29,13 +29,13 @@
                 <td> <?=$combat->character->name?> </td>
                 <td>
                     <span class='currentroll'><?=$combat->roll?>  </span> 
-                    <form class="rollform" action='combat/editroll/<?=$combat->id?>' method="post" id='newroll'>
+                    <form class="rollform" action='/combat/editroll/<?=$combat->id?>' method="post" id='newroll'>
                         {{ csrf_field() }}
                         <input type="text" name="roll" id='roll' value='<?=$combat->roll?>'>   
                     </form>
                 </td>
                 <td> <?=$combat->character->current_health."/".$combat->character->max_health?>   </td>
-                <td> <a href='combat/delete/<?=$combat->id?>'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span></a>
+                <td> <a href='/combat/delete/<?=$combat->id?>'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span></a>
                     <a href="combat/maketurn/<?=$combat->id?>"><span class='glyphicon glyphicon-triangle-left' aria-hidden='true'></span></a>
                     <a href="#" class="editroll"><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span></a>
                 </td>
@@ -54,7 +54,7 @@
 </div>
 <div class="row">
     <div class="col-md-6 col-md-offset-4">
-        <form class="form-inline" action='combat/add' method="post">
+        <form class="form-inline" action='/combat/add' method="post">
             {{ csrf_field() }}
             <div class="form-group">
                 <label for="name">Character</label>
@@ -73,8 +73,8 @@
                 <input type="checkbox" name="api" >
             </div>
             <div class="form-group">
-                <label for="health">Health</label>
-                <input type="text" class="form-control" id="health" name="health" placeholder="11">
+                <label for="max_health">Health</label>
+                <input type="text" class="form-control" id="max_health" name="max_health" placeholder="11">
             </div>
             <div class="form-group">
                 <label for="AC">AC</label>

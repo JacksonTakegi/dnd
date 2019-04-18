@@ -21,16 +21,16 @@ class CombatController extends Controller
     public function addName(Request $request)
     {
         $character = \App\Character::where("name", $request->name)->first();
+
+        // Create a new character if it doesn't already exist
         if ($character) {
         } else {
-            $character = new \App\Character();
-            $character->name = $request->name;
-            $character->character_type = "npc";
-            $character->max_health = 0;
-            $character->current_health = 0;
-            $character->status = "alive";
+            $character = new \App\Character($request->all());
             $character->save();
         }
+
+
+
         $combat = new \App\Combat();
         $combat->character_id = $character->id;
         $combat->roll = $request->roll;
