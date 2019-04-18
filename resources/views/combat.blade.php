@@ -61,9 +61,36 @@
                 <input type="text" class="form-control" id="name" name="name" placeholder="Butts">
             </div>
             <div class="form-group">
+                <label for="race">Race</label>
+                <input type="text" class="form-control" id="race" name="race" placeholder="Butts">
+            </div>
+            <div class="form-group">
                 <label for="roll">Roll</label>
                 <input type="text" class="form-control roll-input" id="roll" name="roll" placeholder="11">
             </div>
+            <div class="form-group">
+                <label for="api">Load Defaults</label>
+                <input type="checkbox" name="api" >
+            </div>
+            <div class="form-group">
+                <label for="health">Health</label>
+                <input type="text" class="form-control" id="health" name="health" placeholder="11">
+            </div>
+            <div class="form-group">
+                <label for="AC">AC</label>
+                <input type="text" class="form-control" id="ac" name="ac" placeholder="11">
+            </div>
+            <div class="form-group">
+                <label for="class">Class</label>
+                <input type="text" class="form-control" id="class" name="class" placeholder="11">
+            </div>
+            <div class="form-group">
+                <label for="level">Level</label>
+                <input type="text" class="form-control" id="level" name="level" placeholder="11">
+            </div>
+
+
+
             <button type="submit" class="btn btn-default">Send invitation</button>
         </form>
     </div>
