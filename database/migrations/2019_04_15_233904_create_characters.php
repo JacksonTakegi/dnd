@@ -15,11 +15,11 @@ class   CreateCharacters extends Migration
     {
         Schema::create('characters', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('character_type');
-            $table->string('name');
-            $table->integer('current_health');
-            $table->integer('max_health');
-            $table->string('status');
+            $table->string('character_type')->default('npc');
+            $table->string('name')->nullable();
+            $table->integer('current_health')->default(0)->nullable();
+            $table->integer('max_health')->default(0)->nullable();
+            $table->string('status')->default('alive');
             $table->timestamps();
 
         });
