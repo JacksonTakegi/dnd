@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Character;
 use Illuminate\Http\Request;
 
 class CombatController extends Controller
@@ -25,10 +26,24 @@ class CombatController extends Controller
         // Create a new character if it doesn't already exist
         if ($character) {
         } else {
-            $character = new \App\Character($request->all());
+            $character = new \App\Character($request->except('api'));
+
+            if ($request->api) {
+                $monsterData = Character::getMonsterData($request->race);
+                $character->str = $monsterData['strength'];
+                $character->dex = $monsterData['dexterity'];
+                $character->con = $monsterData['constitution'];
+                $character->int = $monsterData['intelligence'];
+                $character->wis = $monsterData['wisdom'];
+                $character->cha = $monsterData['charisma'];
+                $character->ac = $monsterData['armor_class'];
+                $character->max_health = $monsterData['hit_points'];
+                $character->current_health = $monsterData['hit_points'];
+                $character->level = 1;
+            }
+
             $character->save();
         }
-
 
 
         $combat = new \App\Combat();
@@ -85,8 +100,8 @@ class CombatController extends Controller
 
     public function editRoll($id, Request $request)
     {
-        $combat= \App\Combat::where("id", $id)->first();
-        $combat->roll=$request->roll;
+        $combat = \App\Combat::where("id", $id)->first();
+        $combat->roll = $request->roll;
         $combat->save();
         return \Redirect::to('combat');
     }
