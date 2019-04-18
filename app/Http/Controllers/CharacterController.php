@@ -10,7 +10,7 @@ class CharacterController extends Controller
     public function index()
     {
         $characters = Character::orderByRaw("FIELD(character_type, 'pc', 'inpc', 'npc') ASC")->get();
-        return $characters;
+        return \View::make('characters', array('characters' => $characters));
     }
 
     public function getMonsterData($monsterName)
