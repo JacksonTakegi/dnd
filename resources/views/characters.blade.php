@@ -14,6 +14,7 @@
         }
     </style>
 </head>
+@include('navigation')
 <div class="container-fluid">
 
     <?php foreach ($characters as $character) {
