@@ -21,9 +21,15 @@
     ?>
     <div class="col-md-3 col-sm-6 character-card">
         <div class="row">
-            <div class="col-md-4"><strong><?=$character->name?></strong></div>
-            <div class="col-md-4"><?=$character->player?></div>
-            <div class="col-md-4"><?=$character->class . " " . $character->level?></div>
+            <div class="col-md-3"><strong><?=$character->name?></strong></div>
+            <div class="col-md-3"><?php
+            if ($character->character_type=="inpc"||$character->character_type=="npc") {
+            	echo $character->character_type;
+            }
+            echo $character->player;
+            ?></div>
+            <div class="col-md-3"><?=$character->race?></div>
+            <div class="col-md-3"><?=$character->class . " " . $character->level?></div>
         </div>
         <div class="row ability-table">
             <table class="table">
@@ -46,7 +52,10 @@
             </table>
         </div>
         <div class="row">
-            <div class="col-md-10"><strong>HP</strong> <?=$character->current_health . "/" . $character->max_health?>
+            <div class="col-md-3"><strong>HP</strong> <?=$character->current_health . "/" . $character->max_health?>
+            </div>
+            <div class="col-md-7" style="background-color:#d20b07; padding:0;"> 
+            	<div class="current-health-bar" style="background-color:#3c763d; width:<?=$character->current_health/$character->max_health*100?>%; height:17px; border-right:1px solid black"></div> 
             </div>
             <div class="col-md-2"><strong>AC</strong> <?=$character->ac?></div>
         </div>

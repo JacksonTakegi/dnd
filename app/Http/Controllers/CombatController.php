@@ -27,7 +27,7 @@ class CombatController extends Controller
         if ($character) {
         } else {
             $character = new \App\Character($request->except('api'));
-
+            $character->current_health=$character->max_health;
             if ($request->api) {
                 $monsterData = Character::getMonsterData($request->race);
                 $character->str = $monsterData['strength'];
