@@ -103,7 +103,7 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label for="character-type">Character Type</label>
-                    <select class="form-control">
+                    <select class="form-control" name="character_type" id="character_type">
                         <option>PC</option>
                         <option>Important NCP</option>
                         <option selected="selected">NPC</option>
