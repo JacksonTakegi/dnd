@@ -104,10 +104,13 @@
                 <div class="form-group col-md-6">
                     <label for="character-type">Character Type</label>
                     <select class="form-control" name="character_type" id="character_type">
-                        <option>PC</option>
-                        <option>Important NCP</option>
-                        <option selected="selected">NPC</option>
+                        <option value="pc">PC</option>
+                        <option value="inpc">Important NCP</option>
+                        <option value="npc" selected="selected">NPC</option>
                     </select>
+                </div>
+                <div class="form-group col-md-6">
+
                 </div>
                 <div class="form-group col-md-6">
                     <label for="api">Load Defaults</label>
