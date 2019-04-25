@@ -84,6 +84,14 @@
                     <input type="text" class="form-control roll-input" id="roll" name="roll" placeholder="11">
                 </div>
                 <div class="form-group col-md-6">
+                    <label for="character-type">Character Type</label>
+                    <select class="form-control">
+                        <option>PC</option>
+                        <option>Important NCP</option>
+                        <option selected="selected">NPC</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
                     <label for="api">Load Defaults</label>
                     <input type="checkbox" name="api">
                 </div>
