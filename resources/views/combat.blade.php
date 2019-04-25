@@ -8,6 +8,10 @@
             font-size: large;
         }
 
+        .glyphicon-tint{
+            color: #c70404;
+        }
+
         .roll-input {
             width: 100px !important;
         }
@@ -16,6 +20,14 @@
             width: 25px;
         }
 
+        input#damage {
+            width: 20px;
+            display:inline !important;
+        }
+
+        form.damageform {
+            display: inline;
+        }
         .main-table {
             margin-top: 50px;
         }
@@ -39,7 +51,7 @@
                 <td> <?=$combat->character->name?> </td>
                 <td>
                     <span class='currentroll'><?=$combat->roll?>  </span>
-                    <form class="rollform" action='/combat/editroll/<?=$combat->id?>' method="post" id='newroll'>
+                    <form class="rollform" action='/combat/editroll/<?=$combat->id?>' method="post">
                         {{ csrf_field() }}
                         <input type="text" name="roll" id='roll' value='<?=$combat->roll?>'>
                     </form>
@@ -50,6 +62,12 @@
                     <a href="combat/maketurn/<?=$combat->id?>"><span class='glyphicon glyphicon-triangle-left'
                                                                      aria-hidden='true'></span></a>
                     <a href="#" class="editroll"><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span></a>
+                    <a href="#" class="takedamage"><span class='glyphicon glyphicon-tint' aria-hidden='true'></span></a>
+                    <form class="damageform" action='/combat/takedamage/<?=$combat->id?>' method="post">
+                        {{ csrf_field() }}
+                        <input type="text" name="damage" id='damage'>
+                    </form>
+                    <!-- Damage icon w/ hidden form to subtract from current health -->
                 </td>
                 <td> <?php if ($combat->current_turn) {
                         echo "<span class= 'glyphicon glyphicon-flash'></span> ";
@@ -115,9 +133,13 @@
 <script type="text/javascript">
     $(".rollform").hide()
     $(".editroll").click(function () {
-        console.log($(this).parent().parent().find(".currentroll").toggle())
-        console.log($(this).parent().parent().find(".rollform").toggle())
+        $(this).parent().parent().find(".currentroll").toggle()
+        $(this).parent().parent().find(".rollform").toggle()
     })
-
-
+    $(".damageform").hide()
+    $(".takedamage").click(function () {
+        $(this).parent().parent().find(".takedamage").toggle()
+        $(this).parent().parent().find(".damageform").toggle()
+    })   
 </script>
+
