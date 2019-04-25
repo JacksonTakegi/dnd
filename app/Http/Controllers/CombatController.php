@@ -106,7 +106,8 @@ class CombatController extends Controller
         return \Redirect::to('combat');
     }
 
-    public function takeDamage($id, Request $request){
+    public function takeDamage($id, Request $request)
+    {
         $combat = \App\Combat::where("id", $id)->first();
         $combat->character->current_health -= $request->damage;
         $combat->character->save();
