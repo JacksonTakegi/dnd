@@ -10,7 +10,7 @@ class CombatController extends Controller
     public function index()
     {
         $combats = \App\Combat::all()->sortByDesc("roll");
-        return \View::make('combat', array('combats' => $combats));
+        return \View::make('combat', ['combats' => $combats, 'monsterList'=>\App\Monster::listNames()]);
     }
 
     public function getName($id)
@@ -19,32 +19,53 @@ class CombatController extends Controller
         return $combat->character->name;
     }
 
+    public function fillDefaultMonsterValues($character, $race)
+    {
+        $monsterData = \App\Monster::where('name', $race)->first();
+        $columns = \Schema::getColumnListing("characters");
+
+
+        // Fill in all the main stuff
+        $character->str = $monsterData->strength;
+        $character->dex = $monsterData->dexterity;
+        $character->con = $monsterData->constitution;
+        $character->int = $monsterData->intelligence;
+        $character->wis = $monsterData->wisdom;
+        $character->cha = $monsterData->charisma;
+        $character->ac = $monsterData->armor_class;
+        $character->max_health = $monsterData->hit_points;
+        $character->current_health = $monsterData->hit_points;
+
+        // try to fill in any columns that are still blank
+        foreach ($columns as $columnName) {
+            if (!isset($character->$columnName) && isset($monsterData->$columnName)) {
+                $character->$columnName = $monsterData->$columnName;
+            }
+        }
+        return $character;
+    }
+
+
+
     public function addName(Request $request)
     {
+        // Remove blank values
         $character = \App\Character::where("name", $request->name)->first();
+        $requestData = array_filter($request->all());
+
 
         // Create a new character if it doesn't already exist
         if ($character) {
         } else {
-            $character = new \App\Character($request->except('api'));
-            $character->current_health=$character->max_health;
+            $character = new \App\Character($requestData);
+            $character->current_health = $character->max_health ?? "0";
             if ($request->api) {
-                $monsterData = Character::getMonsterData($request->race);
-                $character->str = $monsterData['strength'];
-                $character->dex = $monsterData['dexterity'];
-                $character->con = $monsterData['constitution'];
-                $character->int = $monsterData['intelligence'];
-                $character->wis = $monsterData['wisdom'];
-                $character->cha = $monsterData['charisma'];
-                $character->ac = $monsterData['armor_class'];
-                $character->max_health = $monsterData['hit_points'];
-                $character->current_health = $monsterData['hit_points'];
+                $character = $this->fillDefaultMonsterValues($character, $request['race']);
                 $character->level = 1;
             }
 
             $character->save();
         }
-
 
         $combat = new \App\Combat();
         $combat->character_id = $character->id;
@@ -114,26 +135,3 @@ class CombatController extends Controller
         return \Redirect::to('combat');
     }
 }
-
-/*
-DB TABLES
-
-combat_stats
-    name = turn_count
-    value = 1
-
-characters
-    character_type = pc, npc, important npc
-    name
-    health
-    other character sheet stuff
-    status = alive, dead, anything else
-
-combat
-
-    combat_id
-    roll
-    current turn
-    etc
-
-*/

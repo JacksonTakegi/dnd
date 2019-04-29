@@ -56,10 +56,14 @@
                         <input type="text" name="roll" id='roll' value='<?=$combat->roll?>'>
                     </form>
                 </td>
-                <td> <?=$combat->character->current_health . "/" . $combat->character->max_health?> 
+
+                <td>                                <?php if ($combat->character->max_health != 0) { // Avoid divide by zero errors ?>
+ <?=$combat->character->current_health . "/" . $combat->character->max_health?> 
                     <div class="col-md-12" style="background-color:#d20b07; padding:0;"> 
                         <div class="current-health-bar" style="background-color:#3c763d; width:<?=$combat->character->current_health/$combat->character->max_health*100?>%; height:5px; border-right:1px solid black"></div> 
                     </div>
+                                    <?php } ?>
+
                   </td>
                 <td><a href='/combat/delete/<?=$combat->id?>'><span class='glyphicon glyphicon-trash'
                                                                     aria-hidden='true'></span></a>
@@ -97,7 +101,15 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label for="race">Race</label>
-                    <input type="text" class="form-control" id="race" name="race" placeholder="Butts">
+                    <select  class="form-control" id="race" name="race" >
+                        <?php foreach ($monsterList as $monsterName) { ?>
+                            # code...
+                       
+                      <option value="<?= $monsterName ?>"><?= $monsterName ?></option>
+                     
+
+                      <?php  } ?>
+                    </select>
                 </div>
             </div>
             <div class="row">

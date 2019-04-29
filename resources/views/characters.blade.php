@@ -55,7 +55,9 @@
             <div class="col-md-3"><strong>HP</strong> <?=$character->current_health . "/" . $character->max_health?>
             </div>
             <div class="col-md-7" style="background-color:#d20b07; padding:0;"> 
+                <?php if ( $character->max_health != 0) { // Avoid divide by zero errors ?>
             	<div class="current-health-bar" style="background-color:#3c763d; width:<?=$character->current_health/$character->max_health*100?>%; height:17px; border-right:1px solid black"></div> 
+                <?php } ?>
             </div>
             <div class="col-md-2"><strong>AC</strong> <?=$character->ac?></div>
         </div>

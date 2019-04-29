@@ -25,6 +25,7 @@ class AddMoreDataToCharacters extends Migration
             $table->integer('int')->default(0);
             $table->integer('wis')->default(0);
             $table->integer('cha')->default(0);
+            $table->string('api')->default(0)->nullable();
         });
     }
 
