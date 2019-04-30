@@ -37,7 +37,7 @@
 </head>
 @include('navigation')
 <div class="row main-table">
-    <div class="col-md-4 col-md-offset-4">
+    <div class="col-md-5 col-md-offset-3">
         <table class="table table-bordered">
             <tr>
                 <th>Name</th>
@@ -88,12 +88,12 @@
             ?>
         </table>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-1">
         <a href="/combat/nexturn" class="btn btn-default">Next Turn</a>
     </div>
 </div>
 <div class="row" id="">
-    <div class="col-md-6 col-md-offset-4">
+    <div class="col-md-6 col-md-offset-3">
         <form action='/combat/add' method="post">
             {{ csrf_field() }}
             <div class="row">
