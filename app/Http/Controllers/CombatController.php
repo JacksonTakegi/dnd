@@ -134,4 +134,26 @@ class CombatController extends Controller
         $combat->character->save();
         return \Redirect::to('combat');
     }
+
+    public function generateCombat($lowCr, $highCr)
+    {
+
+        $monstersInCombat = [];
+        $monsterList = \App\Monster::inRandomOrder()->get();
+        $CrsFound = [];
+        $totalCr = 0;
+        echo("starting combat generation <br>");
+        foreach ($monsterList as $monster) {
+            if ($totalCr + $monster->challenge_rating < $highCr && !in_array($monster->challenge_rating, $CrsFound)) {
+                $CrsFound[] = $monster->challenge_rating;
+                $monstersInCombat[] = $monster->name;
+                $totalCr+=$monster->challenge_rating;
+                echo("added $monster->name with cr of $monster->challenge_rating <br>");
+                echo("current cr is $totalCr <br><br>");
+            } elseif ($lowCr < $totalCr && $totalCr < $highCr) {
+                break;
+            }
+        }
+        return implode(", ", $monstersInCombat);
+    }
 }

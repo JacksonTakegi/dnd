@@ -22,6 +22,8 @@ Route::get('characters', 'CharacterController@index');
 
 Route::get('combat', 'CombatController@index');
 
+Route::get('combat/generate/{lowCr}/{highCr}', 'CombatController@generateCombat');
+
 Route::get('combat/nexturn', 'CombatController@nextTurn');
 
 Route::get('combat/{id}', 'CombatController@getName');
@@ -32,6 +34,7 @@ Route::post('combat/add', 'CombatController@addName');
 
 Route::get('combat/maketurn/{id}', 'CombatController@makeTurn');
 
+
 Route::post('combat/editroll/{id}', 'CombatController@editRoll');
 
 Route::get('characters/monster/{monsterName}', 'CharacterController@getMonsterData');
@@ -39,3 +42,4 @@ Route::get('characters/monster/{monsterName}', 'CharacterController@getMonsterDa
 Route::post('combat/takedamage/{id}', 'CombatController@takeDamage');
 
 Route::post('characters/createcharacter', 'CharacterController@createCharacter');
+

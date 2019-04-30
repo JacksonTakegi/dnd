@@ -10,7 +10,7 @@
             font-size: large;
         }
 
-        .glyphicon-tint{
+        .glyphicon-tint {
             color: #c70404;
         }
 
@@ -24,12 +24,13 @@
 
         input#damage {
             width: 20px;
-            display:inline !important;
+            display: inline !important;
         }
 
         form.damageform {
             display: inline;
         }
+
         .main-table {
             margin-top: 50px;
         }
@@ -60,13 +61,14 @@
                 </td>
 
                 <td>                                <?php if ($combat->character->max_health != 0) { // Avoid divide by zero errors ?>
- <?=$combat->character->current_health . "/" . $combat->character->max_health?> 
-                    <div class="col-md-12" style="background-color:#d20b07; padding:0;"> 
-                        <div class="current-health-bar" style="background-color:#3c763d; width:<?=$combat->character->current_health/$combat->character->max_health*100?>%; height:5px; border-right:1px solid black"></div> 
+                    <?=$combat->character->current_health . "/" . $combat->character->max_health?>
+                    <div class="col-md-12" style="background-color:#d20b07; padding:0;">
+                        <div class="current-health-bar"
+                             style="background-color:#3c763d; width:<?=$combat->character->current_health / $combat->character->max_health * 100?>%; height:5px; border-right:1px solid black"></div>
                     </div>
-                                    <?php } ?>
+                    <?php } ?>
 
-                  </td>
+                </td>
                 <td><a href='/combat/delete/<?=$combat->id?>'><span class='glyphicon glyphicon-trash'
                                                                     aria-hidden='true'></span></a>
                     <a href="combat/maketurn/<?=$combat->id?>"><span class='glyphicon glyphicon-triangle-left'
@@ -99,17 +101,20 @@
             <div class="row">
                 <div class="form-group col-md-6">
                     <label for="name">Character</label>
-                    <input required="required" type="text" class="form-control" id="name" name="name" placeholder="Butts">
+                    <input required="required" type="text" class="form-control" id="name" name="name"
+                           placeholder="Butts">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="race" style="display: block">Race</label>
-                    <input type="text" class="form-control awesomplete" id="race" name="race" data-list="<?= implode(",", $monsterList->toArray()) ?>">
+                    <input type="text" class="form-control awesomplete" id="race" name="race"
+                           data-list="<?= implode(",", $monsterList->toArray()) ?>">
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-md-6">
                     <label for="roll">Roll</label>
-                    <input required="required" type="text" class="form-control roll-input" id="roll" name="roll" placeholder="11">
+                    <input required="required" type="text" class="form-control roll-input" id="roll" name="roll"
+                           placeholder="11">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="character-type">Character Type</label>
