@@ -58,7 +58,7 @@ class CombatController extends Controller
         if ($character) {
         } else {
             $character = new \App\Character($requestData);
-            $character->current_health = $character->max_health ?? "0";
+            $character->current_health = $character->max_health ?? "1";
             if ($request->api) {
                 $character = $this->fillDefaultMonsterValues($character, $request['race']);
                 $character->level = 1;
