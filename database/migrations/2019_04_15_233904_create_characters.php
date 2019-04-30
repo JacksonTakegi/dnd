@@ -17,8 +17,8 @@ class   CreateCharacters extends Migration
             $table->bigIncrements('id');
             $table->string('character_type')->default('npc');
             $table->string('name')->nullable();
-            $table->integer('current_health')->default(0);
-            $table->integer('max_health')->default(0);
+            $table->integer('current_health')->default(1);
+            $table->integer('max_health')->default(1);
             $table->string('status')->default('alive');
             $table->timestamps();
 

@@ -37,3 +37,5 @@ Route::post('combat/editroll/{id}', 'CombatController@editRoll');
 Route::get('characters/monster/{monsterName}', 'CharacterController@getMonsterData');
 
 Route::post('combat/takedamage/{id}', 'CombatController@takeDamage');
+
+Route::post('characters/createcharacter', 'CharacterController@createCharacter');

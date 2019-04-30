@@ -19,8 +19,8 @@
 
     <?php foreach ($characters as $character) {
     ?>
-    <div class="col-md-3 col-sm-6 character-card">
-        <div class="row">
+    <div class="col-md-3 col-sm-6 character-card well">
+        <div class="row" style="min-height:50px">
             <div class="col-md-3"><strong><?=$character->name?></strong></div>
             <div class="col-md-3"><?php
             if ($character->character_type=="inpc"||$character->character_type=="npc") {
@@ -67,6 +67,50 @@
 
 
     <?php }?>
+
+
+    <form action='/characters/createcharacter' method="post">
+    	{{ csrf_field() }}
+    <div class="col-md-3 col-sm-6 character-card">
+        <div class="row">
+            <div class="col-md-3"><input type="text" class="form-control" id="name" name="name" placeholder="Name"></div>
+            <div class="col-md-3"><input type="text" class="form-control" id="character_type" name="character_type" placeholder="npc"></div>
+            <div class="col-md-3"><input type="text" class="form-control" id="race" name="race" placeholder="Race"></div>
+            <div class="col-md-3"><input type="text" class="form-control" id="class" name="class" placeholder="Class"><input type="text" class="form-control" id="level" name="level" placeholder="1"></div>
+        </div>
+        <div class="row ability-table">
+            <table class="table">
+                <tr>
+                    <th>STR</th>
+                    <th>DEX</th>
+                    <th>CON</th>
+                    <th>INT</th>
+                    <th>WIS</th>
+                    <th>CHA</th>
+                </tr>
+                <tr>
+                    <td><input type="text" class="form-control" id="str" name="str" placeholder="3"></td>
+                    <td><input type="text" class="form-control" id="dex" name="dex" placeholder="3"></td>
+                    <td><input type="text" class="form-control" id="con" name="con" placeholder="3"></td>
+                    <td><input type="text" class="form-control" id="int" name="int" placeholder="3"></td>
+                    <td><input type="text" class="form-control" id="wis" name="wis" placeholder="3"></td>
+                    <td><input type="text" class="form-control" id="cha" name="cha" placeholder="3"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="row">
+            <div class="col-md-3"><input type="text" class="form-control" id="max_health" name="max_health" placeholder="health">
+            </div>
+            <div class="col-md-7"> 
+                <button type="submit" class="btn btn-default">Create Character</button>
+            </div>
+            <div class="col-md-2"><input type="text" class="form-control" id="ac" name="ac" placeholder="AC"></div>
+        </div>
+
+    </div>
+    <div class="col-md-1"></div>
+
+	</form>
 
 </div>
 

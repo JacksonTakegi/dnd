@@ -17,14 +17,14 @@ class AddMoreDataToCharacters extends Migration
             $table->integer('ac')->default(0);
             $table->string('player')->nullable();
             $table->string('class')->nullable();
-            $table->integer('level')->default(0);
+            $table->integer('level')->default(1);
             $table->string('race')->nullable();
-            $table->integer('str')->default(0);
-            $table->integer('dex')->default(0);
-            $table->integer('con')->default(0);
-            $table->integer('int')->default(0);
-            $table->integer('wis')->default(0);
-            $table->integer('cha')->default(0);
+            $table->integer('str')->default(3);
+            $table->integer('dex')->default(3);
+            $table->integer('con')->default(3);
+            $table->integer('int')->default(3);
+            $table->integer('wis')->default(3);
+            $table->integer('cha')->default(3);
             $table->string('api')->default(0)->nullable();
         });
     }
