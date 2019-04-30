@@ -2,6 +2,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
           integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <script src="/js/awesomplete.js"></script>
+    <link rel="stylesheet" href="/css/awesomplete.css">
     <style type="text/css">
         .glyphicon-trash {
             color: #c70404;
@@ -90,32 +92,24 @@
         <a href="/combat/nexturn" class="btn btn-default">Next Turn</a>
     </div>
 </div>
-<div class="row">
+<div class="row" id="">
     <div class="col-md-6 col-md-offset-4">
         <form action='/combat/add' method="post">
             {{ csrf_field() }}
             <div class="row">
                 <div class="form-group col-md-6">
                     <label for="name">Character</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Butts">
+                    <input required="required" type="text" class="form-control" id="name" name="name" placeholder="Butts">
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="race">Race</label>
-                    <select  class="form-control" id="race" name="race" >
-                        <?php foreach ($monsterList as $monsterName) { ?>
-                            # code...
-                       
-                      <option value="<?= $monsterName ?>"><?= $monsterName ?></option>
-                     
-
-                      <?php  } ?>
-                    </select>
+                    <label for="race" style="display: block">Race</label>
+                    <input type="text" class="form-control awesomplete" id="race" name="race" data-list="<?= implode(",", $monsterList->toArray()) ?>">
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-md-6">
                     <label for="roll">Roll</label>
-                    <input type="text" class="form-control roll-input" id="roll" name="roll" placeholder="11">
+                    <input required="required" type="text" class="form-control roll-input" id="roll" name="roll" placeholder="11">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="character-type">Character Type</label>
@@ -126,7 +120,6 @@
                     </select>
                 </div>
                 <div class="form-group col-md-6">
-
                 </div>
                 <div class="form-group col-md-6">
                     <label for="api">Load Defaults</label>
@@ -134,21 +127,45 @@
                 </div>
             </div>
             <hr>
-            <div class="form-group">
+            <div class="form-group col-md-3">
                 <label for="max_health">Health</label>
                 <input type="text" class="form-control" id="max_health" name="max_health" placeholder="11">
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-3">
                 <label for="AC">AC</label>
                 <input type="text" class="form-control" id="ac" name="ac" placeholder="11">
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-3">
                 <label for="class">Class</label>
                 <input type="text" class="form-control" id="class" name="class" placeholder="11">
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-3">
                 <label for="level">Level</label>
                 <input type="text" class="form-control" id="level" name="level" placeholder="11">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="str">str</label>
+                <input class="form-control" type="text" name="str" id="str">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="dex">dex</label>
+                <input class="form-control" type="text" name="dex" id="dex">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="con">con</label>
+                <input class="form-control" type="text" name="con" id="con">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="int">int</label>
+                <input class="form-control" type="text" name="int" id="int">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="wis">wis</label>
+                <input class="form-control" type="text" name="wis" id="wis">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="cha">cha</label>
+                <input class="form-control" type="text" name="cha" id="cha">
             </div>
 
 
@@ -167,6 +184,7 @@
     $(".takedamage").click(function () {
         $(this).parent().parent().find(".takedamage").toggle()
         $(this).parent().parent().find(".damageform").toggle()
-    })   
+    })
+
 </script>
 
