@@ -35,7 +35,7 @@
         }
     </style>
 </head>
-
+@include('navigation')
 <div class="row main-table">
     <div class="col-md-4 col-md-offset-4">
         <table class="table table-bordered">
