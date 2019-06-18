@@ -56,7 +56,7 @@
                     <span class='currentroll'><?=$combat->roll?>  </span>
                     <form class="rollform" action='/combat/editroll/<?=$combat->id?>' method="post">
                         {{ csrf_field() }}
-                        <input type="text" name="roll" id='roll' value='<?=$combat->roll?>'>
+                        <input class="roll-input" type="text" name="roll" id='roll' value='<?=$combat->roll?>'>
                     </form>
                 </td>
 
@@ -77,7 +77,7 @@
                     <a href="#" class="takedamage"><span class='glyphicon glyphicon-tint' aria-hidden='true'></span></a>
                     <form class="damageform" action='/combat/takedamage/<?=$combat->id?>' method="post">
                         {{ csrf_field() }}
-                        <input type="text" name="damage" id='damage'>
+                        <input class="damage-input" type="text" name="damage" id='damage'>
                     </form>
                     <!-- Damage icon w/ hidden form to subtract from current health -->
                 </td>
@@ -184,11 +184,13 @@
     $(".editroll").click(function () {
         $(this).parent().parent().find(".currentroll").toggle()
         $(this).parent().parent().find(".rollform").toggle()
+        $(this).parent().parent().find(".roll-input").focus()
     })
     $(".damageform").hide()
     $(".takedamage").click(function () {
         $(this).parent().parent().find(".takedamage").toggle()
         $(this).parent().parent().find(".damageform").toggle()
+        $(this).parent().parent().find(".damage-input").focus()
     })
 
 </script>

@@ -10,7 +10,7 @@ class CombatController extends Controller
     public function index()
     {
         $combats = \App\Combat::all()->sortByDesc("roll");
-        return \View::make('combat', ['combats' => $combats, 'monsterList'=>\App\Monster::listNames()]);
+        return \View::make('combat', ['combats' => $combats, 'monsterList' => \App\Monster::listNames()]);
     }
 
     public function getName($id)
@@ -46,7 +46,6 @@ class CombatController extends Controller
     }
 
 
-
     public function addName(Request $request)
     {
         // Remove blank values
@@ -79,6 +78,9 @@ class CombatController extends Controller
     {
         $combat = \App\Combat::where("id", $id)->first();
         $combat->delete();
+        if ($combat->character->character_type == "npc") {
+            $combat->character->delete();
+        }
         return \Redirect::to('combat');
     }
 
@@ -147,7 +149,7 @@ class CombatController extends Controller
             if ($totalCr + $monster->challenge_rating < $highCr && !in_array($monster->challenge_rating, $CrsFound)) {
                 $CrsFound[] = $monster->challenge_rating;
                 $monstersInCombat[] = $monster->name;
-                $totalCr+=$monster->challenge_rating;
+                $totalCr += $monster->challenge_rating;
                 echo("added $monster->name with cr of $monster->challenge_rating <br>");
                 echo("current cr is $totalCr <br><br>");
             } elseif ($lowCr < $totalCr && $totalCr < $highCr) {
