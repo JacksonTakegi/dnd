@@ -43,3 +43,5 @@ Route::post('combat/takedamage/{id}', 'CombatController@takeDamage');
 
 Route::post('characters/createcharacter', 'CharacterController@createCharacter');
 
+Route::get('character/delete/{id}', 'CharacterController@delete');
+

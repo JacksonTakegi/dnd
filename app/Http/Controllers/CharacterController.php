@@ -27,4 +27,14 @@ class CharacterController extends Controller
         $character->save();
         return \Redirect::to('characters');
     }
+
+    public function delete($id)
+    {
+        $character = \App\Character::where("id", $id)->first();
+        $character->delete();
+        if ($character->combat) {
+            $character->combat->delete();
+        }
+        return \Redirect::to('characters');
+    }
 }
