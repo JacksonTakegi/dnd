@@ -254,12 +254,24 @@
         $(this).parent().parent().find(".damage-input").focus()
     })
 
-
+    // Hide all the input forms to start
     $(".character-card").hide()
+
+    // When an add button is clicked, remove the btn-primary class
+    // from all other buttons, and add btn-primary to the one that 
+    // was just clicked.
+    //
+    // Hide all the character input fields, and show the one thats 
+    // referenced in the buttons "data-show" attribute
     $(".add-btn").click(function(){
+
+        $(".add-btn").removeClass("btn-primary")
+        $(this).addClass("btn-primary")
+
         var toShow = $(this).data('show')
         $(".character-card").hide()
         $("." + toShow).show()
     })
+    
 </script>
 
