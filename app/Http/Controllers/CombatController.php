@@ -10,7 +10,7 @@ class CombatController extends Controller
     public function index()
     {
         $combats = \App\Combat::all()->sortByDesc("roll");
-        return \View::make('combat', ['combats' => $combats, 'monsterList' => \App\Monster::listNames()]);
+        return \View::make('combat', ['combats' => $combats, 'monsters' => \App\Monster::all(), 'characters'=> \App\Character::all()]);
     }
 
     public function getName($id)
@@ -45,30 +45,49 @@ class CombatController extends Controller
         return $character;
     }
 
-
-    public function addName(Request $request)
+    public function addExisting(Request $request)
     {
-        // Remove blank values
-        $character = \App\Character::where("name", $request->name)->first();
-        $requestData = array_filter($request->all());
+        $character = \App\Character::find($request->id);
+        $combat = new \App\Combat();
+        $combat->character_id = $character->id;
+        $combat->roll = $request->roll ?? random_int(1, 20);
+        $combat->current_turn = false;
+        $combat->save();
+        return \Redirect::to('combat');
+    }
 
+    public function addGenerated(Request $request)
+    {
 
-        // Create a new character if it doesn't already exist
-        if ($character) {
-        } else {
-            $character = new \App\Character($requestData);
-            $character->current_health = $character->max_health ?? "1";
-            if ($request->api) {
-                $character = $this->fillDefaultMonsterValues($character, $request['race']);
-                $character->level = 1;
-            }
+        $character = new \App\Character($request->all());
+        $character = $this->fillDefaultMonsterValues($character, $request['race']);
+        $character->level = 1;
 
-            $character->save();
-        }
+   
+
+        $character->save();
+        
 
         $combat = new \App\Combat();
         $combat->character_id = $character->id;
-        $combat->roll = $request->roll;
+        $combat->roll = $request->roll ?? random_int(1, 20);
+        $combat->current_turn = false;
+        $combat->save();
+        return \Redirect::to('combat');
+    }
+
+
+    public function createAndAdd(Request $request)
+    {
+        $requestData = array_filter($request->all());
+
+        $character = new \App\Character($requestData);
+        $character->current_health = $character->max_health ?? "1";
+        $character->save();
+        
+        $combat = new \App\Combat();
+        $combat->character_id = $character->id;
+        $combat->roll = $request->roll ?? random_int(1, 20);
         $combat->current_turn = false;
         $combat->save();
         return \Redirect::to('combat');

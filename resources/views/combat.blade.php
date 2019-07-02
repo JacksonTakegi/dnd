@@ -14,15 +14,11 @@
             color: #c70404;
         }
 
-        .roll-input {
-            width: 100px !important;
-        }
-
-        input#roll {
+        input.roll-input {
             width: 25px;
         }
 
-        input#damage {
+        input.damage-input {
             width: 20px;
             display: inline !important;
         }
@@ -34,11 +30,25 @@
         .main-table {
             margin-top: 50px;
         }
+
+        .awesomplete{
+            width: 100%;
+        }
+        .character-card {
+            margin-top:30px;
+            margin-bottom:30px;
+            padding: 15px;
+            border: 2px solid cornflowerblue;
+            background-color: #dde3ea;
+            box-shadow: #DADAD5 4px 4px 5px;
+            border-radius: 5px;
+        }
     </style>
 </head>
 @include('navigation')
+<div class="container">
 <div class="row main-table">
-    <div class="col-md-5 col-md-offset-3">
+    <div class="col-md-10">
         <table class="table table-bordered">
             <tr>
                 <th>Name</th>
@@ -56,7 +66,7 @@
                     <span class='currentroll'><?=$combat->roll?>  </span>
                     <form class="rollform" action='/combat/editroll/<?=$combat->id?>' method="post">
                         {{ csrf_field() }}
-                        <input class="roll-input" type="text" name="roll" id='roll' value='<?=$combat->roll?>'>
+                        <input class="roll-input" type="text" name="roll" value='<?=$combat->roll?>'>
                     </form>
                 </td>
 
@@ -90,94 +100,145 @@
             ?>
         </table>
     </div>
-    <div class="col-md-1">
+    <div class="col-md-2">
         <a href="/combat/nexturn" class="btn btn-default">Next Turn</a>
     </div>
 </div>
-<div class="row" id="">
-    <div class="col-md-6 col-md-offset-3">
-        <form action='/combat/add' method="post">
+<hr>
+
+<div class="row">
+    <div class="col-md-3"><button type="submit" data-show="add-existing" class="add-btn btn btn-default">Add Existing Character</button></div>
+    <div class="col-md-3"><button type="submit" data-show="add-generated-monster" class="add-btn btn btn-default">Add Pre-made Monster</button></div>
+    <div class="col-md-3"><button type="submit" data-show="create-monster" class="add-btn btn btn-default">Add Custom Character</button></div>
+</div>
+<div class="row">
+    <div class="add-existing character-card col-md-6 col-md-offset-3">
+        <h3>Add Character</h3>
+        <form action='/combat/add/existing' method="post">
             {{ csrf_field() }}
             <div class="row">
-                <div class="form-group col-md-6">
-                    <label for="name">Character</label>
-                    <input required="required" type="text" class="form-control" id="name" name="name"
-                           placeholder="Butts">
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="race" style="display: block">Race</label>
-                    <input type="text" class="form-control awesomplete" id="race" name="race"
-                           data-list="<?= implode(",", $monsterList->toArray()) ?>">
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-md-6">
-                    <label for="roll">Roll</label>
-                    <input required="required" type="text" class="form-control roll-input" id="roll" name="roll"
-                           placeholder="11">
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="character-type">Character Type</label>
-                    <select class="form-control" name="character_type" id="character_type">
-                        <option value="pc">PC</option>
-                        <option value="inpc">Important NCP</option>
-                        <option value="npc" selected="selected">NPC</option>
+                <div class="form-group col-md-8 ">
+                    <select name="id" class="form-control">
+                    <?php 
+                    foreach ($characters as $character) {
+                        ?><option value="<?= $character->id ?>"><?= $character->name ?></option><?php
+                    }
+                    ?>
                     </select>
                 </div>
-                <div class="form-group col-md-6">
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="api">Load Defaults</label>
-                    <input type="checkbox" name="api">
+                <div class="form-group col-md-4">
+                    <input class="form-control" type="number" name="roll" placeholder="Roll">
                 </div>
             </div>
-            <hr>
-            <div class="form-group col-md-3">
-                <label for="max_health">Health</label>
-                <input type="text" class="form-control" id="max_health" name="max_health" placeholder="11">
-            </div>
-            <div class="form-group col-md-3">
-                <label for="AC">AC</label>
-                <input type="text" class="form-control" id="ac" name="ac" placeholder="11">
-            </div>
-            <div class="form-group col-md-3">
-                <label for="class">Class</label>
-                <input type="text" class="form-control" id="class" name="class" placeholder="11">
-            </div>
-            <div class="form-group col-md-3">
-                <label for="level">Level</label>
-                <input type="text" class="form-control" id="level" name="level" placeholder="11">
-            </div>
-            <div class="form-group col-md-3">
-                <label for="str">str</label>
-                <input class="form-control" type="text" name="str" id="str">
-            </div>
-            <div class="form-group col-md-3">
-                <label for="dex">dex</label>
-                <input class="form-control" type="text" name="dex" id="dex">
-            </div>
-            <div class="form-group col-md-3">
-                <label for="con">con</label>
-                <input class="form-control" type="text" name="con" id="con">
-            </div>
-            <div class="form-group col-md-3">
-                <label for="int">int</label>
-                <input class="form-control" type="text" name="int" id="int">
-            </div>
-            <div class="form-group col-md-3">
-                <label for="wis">wis</label>
-                <input class="form-control" type="text" name="wis" id="wis">
-            </div>
-            <div class="form-group col-md-3">
-                <label for="cha">cha</label>
-                <input class="form-control" type="text" name="cha" id="cha">
-            </div>
-
-
-            <button type="submit" class="btn btn-default">Send invitation</button>
+            <button class="submit">Send Invitation</button>
         </form>
     </div>
 </div>
+
+<div class="row">
+    <div class="add-generated-monster character-card col-md-10 col-md-offset-1">
+        <h3>Add Generated Monster</h3>
+        <form action='/combat/add/generate' method="post">
+            {{ csrf_field() }}
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+                </div>
+                <div class="form-group col-md-4">
+                    <input type="text" class="form-control awesomplete" id="race" name="race"
+                                   data-list="<?= implode(",", $monsters->pluck('name')->toArray()) ?>" placeholder="Type">
+                </div>
+                <div class="form-group col-md-2">
+                    <input type="number" class="form-control" name="roll" placeholder="Roll">
+                </div>
+            </div>
+            <button class="submit">Send Invitation</button>
+        </form>
+    </div>
+</div>
+
+<div class="row" id="">
+    <div class="create-monster character-card col-md-10 col-md-offset-1">
+                <h3>Create and Add Character</h3>
+
+       <form action='/combat/add/create' method="post">
+                    {{ csrf_field() }}
+                        <div class="row">
+                            <div class="col-md-3"><input type="text" class="form-control name" id="name" name="name"
+                                                         placeholder="Name">
+                            </div>
+                            <div class="col-md-2"><select type="text" class="form-control type" id="character_type"
+                                                         name="character_type"
+                                                         placeholder="npc">
+
+                                                         <option value="npc">NPC</option>
+                                                         <option value="inpc">Important NPC</option>
+                                                         <option value="pc">Player</option>
+                            </select>
+                            </div>
+                            <div class="col-md-3"><input type="text" class="form-control race" id="race" name="race"
+                                                         placeholder="Race">
+                            </div>
+                            <div class="col-md-2"><input type="text" class="form-control class" id="class" name="class"
+                                                         placeholder="Class">
+                            </div>
+                            <div class="col-md-2">
+                                <input type="text" class="form-control level"
+                                                                                    id="level"
+                                                                                    name="level" placeholder="Level">
+                            </div>
+                        </div>
+                        <div class="row ability-table col-md-12">
+                            <table class="table">
+                                <tr>
+                                    <th>STR</th>
+                                    <th>DEX</th>
+                                    <th>CON</th>
+                                    <th>INT</th>
+                                    <th>WIS</th>
+                                    <th>CHA</th>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" class="form-control str" id="str" name="str" placeholder="3">
+                                    </td>
+                                    <td><input type="text" class="form-control dex" id="dex" name="dex" placeholder="3">
+                                    </td>
+                                    <td><input type="text" class="form-control con" id="con" name="con" placeholder="3">
+                                    </td>
+                                    <td><input type="text" class="form-control int" id="int" name="int" placeholder="3">
+                                    </td>
+                                    <td><input type="text" class="form-control wis" id="wis" name="wis" placeholder="3">
+                                    </td>
+                                    <td><input type="text" class="form-control cha" id="cha" name="cha" placeholder="3">
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 form-group"><input type="text" class="form-control" id="max_health"
+                                                         name="max_health"
+                                                         placeholder="health">
+                            </div>
+                            <div class="col-md-3 form-group"><input type="text" class="form-control" id="roll"
+                                                         name="roll"
+                                                         placeholder="roll">
+                            </div>
+                           
+                            <div class="col-md-3 form-group"><input type="text" class="form-control" id="ac" name="ac"
+                                                         placeholder="AC"></div>
+                                                          <div class="col-md-3">
+                            </div>
+                            <div class="col-md-3 form-group"><button class="submit btn btn-primary">Send Invitation</button></div>
+                        </div>
+                        
+                </form>
+    </div>
+</div>
+
+
+
+
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
     $(".rollform").hide()
@@ -193,5 +254,24 @@
         $(this).parent().parent().find(".damage-input").focus()
     })
 
+    // Hide all the input forms to start
+    $(".character-card").hide()
+
+    // When an add button is clicked, remove the btn-primary class
+    // from all other buttons, and add btn-primary to the one that 
+    // was just clicked.
+    //
+    // Hide all the character input fields, and show the one thats 
+    // referenced in the buttons "data-show" attribute
+    $(".add-btn").click(function(){
+
+        $(".add-btn").removeClass("btn-primary")
+        $(this).addClass("btn-primary")
+
+        var toShow = $(this).data('show')
+        $(".character-card").hide()
+        $("." + toShow).show()
+    })
+    
 </script>
 

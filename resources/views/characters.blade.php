@@ -200,7 +200,6 @@
     <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
         Create New Character
     </button>
-
 </div>
 
 <div class="modal fade" id="currentCard" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
