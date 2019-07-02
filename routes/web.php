@@ -30,7 +30,11 @@ Route::get('combat/{id}', 'CombatController@getName');
 
 Route::get('combat/delete/{id}', 'CombatController@delete');
 
-Route::post('combat/add', 'CombatController@addName');
+Route::post('combat/add/create', 'CombatController@createAndAdd');
+
+Route::post('combat/add/existing', 'CombatController@addExisting');
+
+Route::post('combat/add/generate', 'CombatController@addGenerated');
 
 Route::get('combat/maketurn/{id}', 'CombatController@makeTurn');
 
