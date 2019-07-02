@@ -30,11 +30,13 @@ class CharacterController extends Controller
 
     public function delete($id)
     {
-        $character = \App\Character::where("id", $id)->first();
-        $character->delete();
+//        $character = \App\Character::where("id", $id)->first();
+        $character = \App\Character::find($id);
         if ($character->combat) {
             $character->combat->delete();
         }
+        $character->delete();
+
         return \Redirect::to('characters');
     }
 }

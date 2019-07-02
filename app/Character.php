@@ -13,4 +13,9 @@ class Character extends Model
     {
         return Monster::where('name', strtolower($monsterName))->first();
     }
+
+    public function combat()
+    {
+        return $this->hasOne('App\Combat');
+    }
 }

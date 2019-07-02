@@ -76,7 +76,7 @@ class CombatController extends Controller
 
     public function delete($id)
     {
-        $combat = \App\Combat::where("id", $id)->first();
+        $combat = \App\Combat::find($id);
         $combat->delete();
         if ($combat->character->character_type == "npc") {
             $combat->character->delete();
@@ -86,7 +86,7 @@ class CombatController extends Controller
 
     public function makeTurn($id)
     {
-        $combat = \App\Combat::where("id", $id)->first();
+        $combat = \App\Combat::find($id);
         $combat->current_turn = true;
         $combat->save();
         $combats = \App\Combat::where('id', "!=", $id)->get();
@@ -123,7 +123,7 @@ class CombatController extends Controller
 
     public function editRoll($id, Request $request)
     {
-        $combat = \App\Combat::where("id", $id)->first();
+        $combat = \App\Combat::find($id);
         $combat->roll = $request->roll;
         $combat->save();
         return \Redirect::to('combat');
@@ -131,7 +131,7 @@ class CombatController extends Controller
 
     public function takeDamage($id, Request $request)
     {
-        $combat = \App\Combat::where("id", $id)->first();
+        $combat = \App\Combat::find($id);
         $combat->character->current_health -= $request->damage;
         $combat->character->save();
         return \Redirect::to('combat');
