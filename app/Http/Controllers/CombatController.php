@@ -11,8 +11,8 @@ class CombatController extends Controller
     {
         $combats = \App\Combat::all()->sortByDesc("roll");
         return \View::make('combat', [
-            'combats' => $combats, 
-            'monsters' => \App\Monster::all(), 
+            'combats' => $combats,
+            'monsters' => \App\Monster::all(),
             'characters'=> \App\Character::all()
         ]);
     }
