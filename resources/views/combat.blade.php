@@ -46,6 +46,9 @@
     </style>
 </head>
 @include('navigation')
+<div class="col-md-2" style="top:20px">
+    <a href="/combat/reset" class="btn btn-default reset-button">Full Reset</a>
+</div>
 <div class="container">
 <div class="row main-table">
     <div class="col-md-10">
@@ -55,7 +58,7 @@
                 <th>Roll</th>
                 <th>Health</th>
                 <th>Actions</th>
-                <th>Current Turn</th>
+                <th style="width:130px">Current Turn</th>
             </tr>
             <?php
             foreach ($combats as $combat) {
@@ -91,7 +94,7 @@
                     </form>
                     <!-- Damage icon w/ hidden form to subtract from current health -->
                 </td>
-                <td> <?php if ($combat->current_turn) {
+                <td style='text-align:center' > <?php if ($combat->current_turn) {
                         echo "<span class= 'glyphicon glyphicon-flash'></span> ";
                     } ?> </td>
             </tr>
@@ -110,6 +113,7 @@
     <div class="col-md-3"><button type="submit" data-show="add-existing" class="add-btn btn btn-default">Add Existing Character</button></div>
     <div class="col-md-3"><button type="submit" data-show="add-generated-monster" class="add-btn btn btn-default">Add Pre-made Monster</button></div>
     <div class="col-md-3"><button type="submit" data-show="create-monster" class="add-btn btn btn-default">Add Custom Character</button></div>
+    <div class=col-md-3"><a href="/combat/addall" class="btn btn-default">Add All PCs</a></div>
 </div>
 <div class="row">
     <div class="add-existing character-card col-md-6 col-md-offset-3">
@@ -271,6 +275,12 @@
         var toShow = $(this).data('show')
         $(".character-card").hide()
         $("." + toShow).show()
+    })
+    $(".reset-button").click(function () {
+        var confirmation=confirm("This will delete everything in the combat, put the saved PCs at full health, and erase all NPCs. It would be a hassle to fix this mistake, tread carefully.")
+        if (!confirmation) {
+            return false
+        }
     })
     
 </script>

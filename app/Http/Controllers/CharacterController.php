@@ -39,4 +39,13 @@ class CharacterController extends Controller
 
         return \Redirect::to('characters');
     }
+
+    public function editCharacter(Request $request)
+    {
+        $id=$request->id;
+        $character = \App\Character::find($id);
+        $character->fill($request->all());
+        $character->save();
+        return \Redirect::to('characters');
+    }
 }

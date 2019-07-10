@@ -181,4 +181,39 @@ class CombatController extends Controller
         }
         return implode(", ", $monstersInCombat);
     }
+
+    public function addAll()
+    {
+//        go through all characters, add all with charactertype=PC with roll=1
+        $characters = \App\Character::where('character_type', 'pc')->get();
+        foreach ($characters as $character) {
+                $combat = new \App\Combat();
+                $combat->character_id = $character->id;
+                $combat->roll = 1;
+                $combat->current_turn = false;
+                $combat->save();
+        }
+        return \Redirect::to('combat');
+
+//        $character = \App\Character::find($request->id);
+    }
+
+    /**
+     * put all PCs and INPCs to full health
+     * delete all combats
+     */
+    public function reset()
+    {
+        $combats = \App\Combat::all();
+        foreach ($combats as $combat) {
+            $combat->character->current_health = $combat->character->max_health;
+            $combat->character->save();
+            $combat->delete();
+            if ($combat->character->character_type == "npc") {
+                $combat->character->delete();
+            }
+
+        }
+        return \Redirect::to('combat');
+    }
 }

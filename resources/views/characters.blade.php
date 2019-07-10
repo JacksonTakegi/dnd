@@ -212,7 +212,7 @@
                 <h4 class="modal-title" id="myModalLabel"></h4>
             </div>
             <div class="modal-body">
-                <form action='/characters/createcharacter' method="post">
+                <form action='/characters/edit' method="post">
                     {{ csrf_field() }}
                     <div class="character-card well">
                         <div class="row">
@@ -262,8 +262,9 @@
                                                          name="max_health"
                                                          placeholder="health">
                             </div>
+                            <input type="text" name="id" class="id-edit">
                             <div class="col-md-7">
-                                <button type="submit" class="btn btn-default">Create Character</button>
+                                <button type="submit" class="btn btn-default">Edit Character</button>
                             </div>
                             <div class="col-md-2"><input type="text" class="form-control ac-edit" id="ac" name="ac"
                                                          placeholder="AC"></div>
@@ -298,6 +299,7 @@
         $('.cha-edit').val(characterData.cha);
         $('.health-edit').val(characterData.max_health);
         $('.ac-edit').val(characterData.ac);
+        $('.id-edit').val(characterData.id);
 
     })
 </script>
