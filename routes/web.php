@@ -26,6 +26,10 @@ Route::get('combat/generate/{lowCr}/{highCr}', 'CombatController@generateCombat'
 
 Route::get('combat/nexturn', 'CombatController@nextTurn');
 
+Route::get('combat/addall', 'CombatController@addAll');
+
+Route::get('combat/reset', 'CombatController@reset');
+
 Route::get('combat/{id}', 'CombatController@getName');
 
 Route::get('combat/delete/{id}', 'CombatController@delete');
@@ -48,4 +52,8 @@ Route::post('combat/takedamage/{id}', 'CombatController@takeDamage');
 Route::post('characters/createcharacter', 'CharacterController@createCharacter');
 
 Route::get('character/delete/{id}', 'CharacterController@delete');
+
+Route::post('characters/edit', 'CharacterController@editCharacter');
+
+
 
