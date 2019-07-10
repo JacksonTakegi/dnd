@@ -212,7 +212,6 @@ class CombatController extends Controller
             if ($combat->character->character_type == "npc") {
                 $combat->character->delete();
             }
-
         }
         return \Redirect::to('combat');
     }
