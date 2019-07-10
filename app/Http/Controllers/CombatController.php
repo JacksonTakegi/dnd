@@ -10,7 +10,11 @@ class CombatController extends Controller
     public function index()
     {
         $combats = \App\Combat::all()->sortByDesc("roll");
-        return \View::make('combat', ['combats' => $combats, 'monsters' => \App\Monster::all(), 'characters'=> \App\Character::all()]);
+        return \View::make('combat', [
+            'combats' => $combats,
+            'monsters' => \App\Monster::all(),
+            'characters'=> \App\Character::all()
+        ]);
     }
 
     public function getName($id)

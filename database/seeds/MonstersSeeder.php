@@ -11,6 +11,7 @@ class MonstersSeeder extends Seeder
      */
     public function run()
     {
+        Monster::truncate();
         $monstersFile = Storage::get('5e-SRD-Monsters.json');
         $monstersJson =json_decode($monstersFile);
         echo(count($monstersJson) . " monsters found");
