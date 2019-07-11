@@ -113,7 +113,7 @@
     <div class="col-md-3"><button type="submit" data-show="add-existing" class="add-btn btn btn-default">Add Existing Character</button></div>
     <div class="col-md-3"><button type="submit" data-show="add-generated-monster" class="add-btn btn btn-default">Add Pre-made Monster</button></div>
     <div class="col-md-3"><button type="submit" data-show="create-monster" class="add-btn btn btn-default">Add Custom Character</button></div>
-    <div class=col-md-3"><a href="/combat/addall" class="btn btn-default">Add All PCs</a></div>
+    <div class="col-md-3"><a href="/combat/addall" class="btn btn-default">Add All PCs</a></div>
 </div>
 <div class="row">
     <div class="add-existing character-card col-md-6 col-md-offset-3">

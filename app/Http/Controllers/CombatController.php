@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Character;
 use Illuminate\Http\Request;
+use \Auth;
 
 class CombatController extends Controller
 {
     public function index()
     {
-        $combats = \App\Combat::all()->sortByDesc("roll");
+        $combats = \App\Combat::where('user_id', Auth::id())->get()->sortByDesc("roll");
         return \View::make('combat', [
             'combats' => $combats,
             'monsters' => \App\Monster::all(),
@@ -56,6 +57,7 @@ class CombatController extends Controller
         $combat->character_id = $character->id;
         $combat->roll = $request->roll ?? random_int(1, 20);
         $combat->current_turn = false;
+        $combat->user_id = Auth::id();
         $combat->save();
         return \Redirect::to('combat');
     }
@@ -66,7 +68,7 @@ class CombatController extends Controller
         $character = new \App\Character($request->all());
         $character = $this->fillDefaultMonsterValues($character, $request['race']);
         $character->level = 1;
-
+        $character->user_id = Auth::id();
    
 
         $character->save();
@@ -76,6 +78,7 @@ class CombatController extends Controller
         $combat->character_id = $character->id;
         $combat->roll = $request->roll ?? random_int(1, 20);
         $combat->current_turn = false;
+        $combat->user_id = Auth::id();
         $combat->save();
         return \Redirect::to('combat');
     }
@@ -87,12 +90,14 @@ class CombatController extends Controller
 
         $character = new \App\Character($requestData);
         $character->current_health = $character->max_health ?? "1";
+        $character->user_id = Auth::id();
         $character->save();
         
         $combat = new \App\Combat();
         $combat->character_id = $character->id;
         $combat->roll = $request->roll ?? random_int(1, 20);
         $combat->current_turn = false;
+        $combat->user_id = Auth::id();
         $combat->save();
         return \Redirect::to('combat');
     }
@@ -122,7 +127,7 @@ class CombatController extends Controller
 
     public function nextTurn()
     {
-        $combats = \App\Combat::orderBy('roll', 'desc')->get();
+        $combats = \App\Combat::where('user_id', Auth::id())->orderBy('roll', 'desc')->get();
         $nextCombatsTurn = false;
         foreach ($combats as $combat) {
             if ($nextCombatsTurn) {

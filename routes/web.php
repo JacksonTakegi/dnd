@@ -57,3 +57,7 @@ Route::post('characters/edit', 'CharacterController@editCharacter');
 
 
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
