@@ -11,7 +11,9 @@ class CharacterController extends Controller
 {
     public function index()
     {
-        $characters = Character::where('user_id', Auth::id())->orderByRaw("FIELD(character_type, 'pc', 'inpc', 'npc') ASC")->get();
+        $characters = Character::where('user_id', Auth::id())
+                                ->orderByRaw("FIELD(character_type, 'pc', 'inpc', 'npc') ASC")
+                                ->get();
         return \View::make('characters', array('characters' => $characters));
     }
 
