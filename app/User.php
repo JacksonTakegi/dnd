@@ -41,4 +41,9 @@ class User extends Authenticatable
     {
         $this->roll = $roll;
     }
+
+    public function campaigns()
+    {
+        return $this->belongsToMany('App\Campaign');
+    }
 }

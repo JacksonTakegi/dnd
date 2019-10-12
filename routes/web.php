@@ -55,6 +55,8 @@ Route::get('character/delete/{id}', 'CharacterController@delete');
 
 Route::post('characters/edit', 'CharacterController@editCharacter');
 
+Route::get('campaigns', 'CampaignController@index');
+
 
 
 

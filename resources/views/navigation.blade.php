@@ -11,6 +11,6 @@
 
 <div class="row navigation-container">
     <div class="col-md-12">
-        <div class="navigation-link"><a href="/characters">Characters</a></div><div class="navigation-link"><a href="/combat">Combat</a></div></div>
+        <div class="navigation-link"><a href="/characters">Characters</a></div><div class="navigation-link"><a href="/combat">Combat</a></div><div class="navigation-link"><a href="/campaigns">Campaigns</a></div></div>
     </div>
 </div>
